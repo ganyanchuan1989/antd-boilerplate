@@ -3,7 +3,7 @@ import { message } from 'antd';
 // 更多配置请根据业务逻辑自行实现
 
 // 后端 API 地址，最好以 http(s):// 打头
-export const localMock = false;
+export const localMock = true;
 export const errHandler = (e) => {
 	if (e && e.errorMessage) {
 		message.error(e.errorMessage);

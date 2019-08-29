@@ -12,14 +12,10 @@ class UserService {
 	login(userData) {
 		return xhr({
 			method: 'post',
-			url: `${SERVER_URL}api/v2/loginController`,
+			url: `${SERVER_URL}api/v1/login`,
 			body: userData,
 			showErr: false,
 		});
-	}
-
-	logout() {
-		return xhr({ url: `${SERVER_URL}api/v2/logoutController` });
 	}
 }
 
