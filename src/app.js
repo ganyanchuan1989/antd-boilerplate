@@ -1,7 +1,7 @@
 /* 入口启动文件 */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { LocaleProvider } from 'antd';
+import { ConfigProvider } from 'antd';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import BasicLayout from './layouts/BasicLayout';
 
@@ -17,13 +17,13 @@ if (__PROD__) {
 // ================================
 function loadIndex() {
 	ReactDOM.render(
-		<LocaleProvider>
+		<ConfigProvider>
 			<Router>
 				<div>
 					<Route path="/" component={BasicLayout} />
 				</div>
 			</Router>
-		</LocaleProvider>,
+		</ConfigProvider>,
 		document.getElementById('app')
 	);
 }

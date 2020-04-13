@@ -9,7 +9,8 @@
     "bundle-analyzer": "cross-env NODE_ENV=production node build/prod.js analyzer",
     "lint": "eslint --ext .js,.jsx src",
     "lint-fix": "eslint --ext .js,.jsx src --fix",
-    "lint-file": "eslint"
+    "lint-file": "eslint",
+    "tools": "npx babel-node ./tools/convert.js"
   },
   "config": {
     "commitizen": {
@@ -32,6 +33,7 @@
     "react-transition-group": "^4.1.1",
     "redux": "3.7.2",
     "redux-thunk": "2.1.0",
+    "string-format": "^2.0.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

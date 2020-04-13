@@ -1,36 +1,42 @@
-page:
-  form:
-    title: 用户信息
-    content:
-      - { type: "input", name: "username", required: true, col: 8 }
-      - { type: "password", name: "password", required: true, col: 8 }
-      - {
-          type: "checkbox",
-          name: "likes",
-          required: true,
-          col: 8,
-          items: [{ lable:'羽毛球', value: 1 }, { lable:'乒乓球', value: 2 }],
-        }
-      - {
-          type: "radio",
-          name: "sex",
-          required: true,
-          col: 8,
-          items: [{ lable:'男', value: 0 }, { lable:'女', value: 1 }],
-        }
-      - {
-          type: "select",
-          name: "sex",
-          required: true,
-          col: 8,
-          items:
-            [
-              { lable:'Lucy', value: "Lucy" },
-              { lable:'Jack', value: "Jack" },
-              { lable:'Jack2', value: "Jack2" },
-            ],
-        }
-    submit:
+- page:
+    clsname: "Page1"
+    routepath: '/page1'
+    form:
+      title: 用户信息
+      formitems:
+        - { type: "input", name: "username", label: '用户名：',  required: true, message: 'Please input your username!', col: 8, initialValue: '' }
+        - { type: "password", name: "password", label: '密码：', required: true, col: 8 }
+        - {
+            type: "checkbox",
+            name: "likes",
+            label: '爱好：',
+            required: true,
+            col: 8,
+            values: [{ label: '羽毛球', value: 1 }, { label: '乒乓球', value: 2 }],
+          }
+        - {
+            type: "radio",
+            name: "sex",
+            label: '性别：',
+            required: true,
+            col: 8,
+            values: [{ label: '男', value: 0 }, { label: '女', value: 1 }],
+          }
+        - {
+            type: "select",
+            name: "friend",
+            label: '朋友：',
+            required: true,
+            col: 8,
+            values:
+              [
+                { label: 'Lucy', value: "Lucy" },
+                { label: 'Jack', value: "Jack" },
+                { label: 'Jack2', value: "Jack2" },
+              ],
+          }
       btns:
-        - { type: "submit", label: "submit", action: "/action.do" }
-        - { type: "reset", label: "reset" }
+          - { type: "submit", label: "submit", action: "/action.do" }
+          - { type: "reset", label: "reset" }
+          - { type: "reset", label: "reset" }
+          - { type: "reset", label: "reset" }

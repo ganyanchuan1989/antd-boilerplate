@@ -174,7 +174,7 @@ module.exports = {
     'no-this-before-super': 2,
     'no-throw-literal': 2,
     // 禁用行尾空格
-    'no-trailing-spaces': 2,
+    'no-trailing-spaces': 0,
     // 禁用未声明的变量，除非它们在 /*global */ 注释中被提到
     'no-undef': 2,
     'no-undef-init': 2,
