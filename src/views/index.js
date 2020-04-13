@@ -72,6 +72,7 @@ class Welcome extends React.Component {
 							Forgot password
 						</a>
 						<Button
+							id="btnSubmit"
 							type="primary"
 							htmlType="submit"
 							style={{ width: '100%' }}
