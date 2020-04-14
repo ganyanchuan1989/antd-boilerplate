@@ -6,7 +6,8 @@ export default {
 `;
 
 const PAGE_TEMPLATE = `import React, {{ Component }} from 'react';
-{tmpImport}
+{tmpImportAntd}
+{tmpImportService}
 
 const formItemLayout = {{
 	labelCol: {{
@@ -23,9 +24,12 @@ class {tmpClsname} extends Component {{
   handleSubmit = (e) => {{
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {{
-			if (!err) {{
+			if (!err) {
 				console.log('Received values of form: ', values);
-			}}
+				{tmpServiceAction}
+			} else {
+				console.log(err);
+			}
 		}});
   }};
 
@@ -42,7 +46,9 @@ class {tmpClsname} extends Component {{
 				{tmpForm}
 				</Row>
 				<Row>
-				{tmpFormButton}	
+					<Form.Item label=" " colon={{false}}>
+					{tmpFormButton}
+					</Form.Item>
 				</Row>
 				</Form>
 			</div>
@@ -53,7 +59,26 @@ class {tmpClsname} extends Component {{
 export default Form.create()({tmpClsname});
 `;
 
+
+const SERVICE_TEMPLATE = `import xhr from './xhr/';
+
+class {tmpServiceName} {
+	action(param) {
+		return xhr({
+			method: 'post',
+			url: '{tmpUrl}',
+			body: param,
+			showErr: false,
+		});
+	}
+}
+
+// 实例化后再导出
+export default new {tmpServiceName}();
+`;
+
 module.exports = {
     ROUTE_TEMPLATE,
-    PAGE_TEMPLATE,
+		PAGE_TEMPLATE,
+		SERVICE_TEMPLATE,
 };

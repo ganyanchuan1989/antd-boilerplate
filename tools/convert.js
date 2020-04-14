@@ -6,9 +6,10 @@ const format = require('string-format');
 // Resource Path
 const ROUTES_PATH = path.resolve(__dirname, '../src/routes/routes.js');
 const VIEW_DIR = path.resolve(__dirname, '../src/views/');
+const SERVICE_DIR = path.resolve(__dirname, '../src/services/');
 
 // Template files
-const { ROUTE_TEMPLATE, PAGE_TEMPLATE } = require('./template');
+const { ROUTE_TEMPLATE, PAGE_TEMPLATE, SERVICE_TEMPLATE } = require('./template');
 
 // Get document, or throw exception on error
 try {
@@ -39,8 +40,11 @@ function generateRoutes(pages) {
 
 // 生成页面
 function generatePage(page) {
+	generateService(page);
 	const { clsname, form } = page;
-	const importStr = generateImport(form);
+	const importAntdStr = generateImportAntd(form);
+	const importServiceStr = generateImportService(page);
+	const serviceActionStr = generateServiceAction(page);
 	// console.log(importStr);
 	const formStr = generatePageForm(form);
 	// console.log(formStr);
@@ -48,7 +52,9 @@ function generatePage(page) {
 	// console.log(btnStr);
 
 	const pageStr = format(PAGE_TEMPLATE, {
-		tmpImport: importStr,
+		tmpImportAntd: importAntdStr,
+		tmpImportService: importServiceStr,
+		tmpServiceAction: serviceActionStr,
 		tmpClsname: clsname,
 		tmpForm: formStr,
 		tmpFormButton: btnStr,
@@ -62,7 +68,7 @@ function generatePage(page) {
 	fs.writeFileSync(pagePath, pageStr, 'utf8');
 }
 
-function generateImport(form) {
+function generateImportAntd(form) {
 	let compStr = '';
 	const { formitems } = form;
 	formitems.forEach((item) => {
@@ -87,10 +93,10 @@ function generatePageFormButton(form) {
 		const { type, label } = btn;
 		if (type === 'reset') {
 			btnStr += `	<Button type="primary" style={{ marginRight: 8 }} onClick={this.handleReset}>${label}</Button>
-				`;
+					`;
 		} else {
 			btnStr += `	<Button type="primary" style={{ marginRight: 8 }} htmlType="${type}">${label}</Button>
-				`;
+					`;
 		}
 	});
 
@@ -103,7 +109,7 @@ function generatePageForm(form) {
 	let form_str = '';
 	formitems.forEach((item) => {
 		const { type } = item;
-		if (type === 'input') form_str += generatePageFormItemInput(item);
+		if (type === 'input' || type == 'password') form_str += generatePageFormItemInput(item);
 		if (type === 'checkbox') form_str += generatePageFormItemCheckbox(item);
 		if (type === 'radio') form_str += generatePageFormItemRadio(item);
 		if (type === 'select') form_str += generatePageFormItemSelect(item);
@@ -112,11 +118,10 @@ function generatePageForm(form) {
 }
 
 function generatePageFormItemInput(item) {
-	const { type, name, label, required, message, initialValue, col } = item;
+	const { type, name, label, required, message, col } = item;
 	return `	<Col span={${col}}>
             <Form.Item label="${label}">
 							{getFieldDecorator('${name}', {
-								initialValue: '${initialValue}',
 								rules: [
 									{
 										required: ${required},
@@ -134,7 +139,7 @@ function generatePageFormItemCheckbox(formitem) {
 	let valueStr = '';
 	values.forEach((valueItem) => {
 		const { label, value } = valueItem;
-		valueStr += `	<Col span={8}>
+		valueStr += `	<Col span={6}>
 										<Checkbox value="${value}">${label}</Checkbox>
 									</Col>
 									`;
@@ -204,7 +209,6 @@ function generatePageFormItemSelect(formItem) {
 	return `				<Col span={${col}}>
 						<Form.Item label="${label}">
 							{getFieldDecorator('${name}', {
-								initialValue: '1',
 								rules: [
 									{
 										required: ${required},
@@ -221,11 +225,37 @@ function generatePageFormItemSelect(formItem) {
 	`;
 }
 
-
 function rmLastLine(x) {
 	if (x.lastIndexOf('\n') > 0) {
     return x.substring(0, x.lastIndexOf('\n'));
 	} else {
 		return x;
 	}
+}
+
+function generateImportService(page) {
+	const { clsname } = page;
+	return `import ${clsname}Service from 'SERVICE/${clsname}Service';`;
+}
+
+function generateServiceAction(page) {
+	// tmpServiceAction
+	const { clsname } = page;
+	return `${clsname}Service.action(values);`;
+} 
+
+function generateService(page) {
+	const {clsname, form} = page;
+	const { btns } = form;
+	let subBtn = btns.filter((btn) => (btn.type === 'submit'))[0];
+	const {action} = subBtn;
+
+	const pageStr = format(SERVICE_TEMPLATE, {
+		tmpServiceName: `${clsname}Service`,
+		tmpUrl: action,
+	});
+
+
+	const servicePath = path.join(SERVICE_DIR, clsname + 'Service.js');
+	fs.writeFileSync(servicePath, pageStr, 'utf8');
 }

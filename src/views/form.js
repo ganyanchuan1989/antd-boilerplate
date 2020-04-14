@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Form, Icon, Input, Select, Radio, Checkbox } from 'antd';
+import Page1Service from 'SERVICE/Page1Service';
 
 const formItemLayout = {
 	labelCol: {
@@ -24,6 +25,9 @@ class FormDemo extends Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
+				Page1Service.action(values);
+			} else {
+				console.log(err);
 			}
 		});
 	};
@@ -36,7 +40,6 @@ class FormDemo extends Component {
 						<Col span={24}>
 							<Form.Item label="用户名：">
 								{getFieldDecorator('username', {
-									initialValue: '111',
 									rules: [
 										{
 											required: true,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Form, Input, Checkbox, Radio, Select } from 'antd';
+import Page1Service from 'SERVICE/Page1Service';
 
 const formItemLayout = {
 	labelCol: {
@@ -18,6 +19,9 @@ class Page1 extends Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
+				Page1Service.action(values);
+			} else {
+				console.log(err);
 			}
 		});
   };
@@ -32,35 +36,46 @@ class Page1 extends Component {
 			<div>
 				<Form {...formItemLayout} onSubmit={this.handleSubmit}>
 				<Row>
-					<Col span={8}>
+					<Col span={24}>
             <Form.Item label="用户名：">
 							{getFieldDecorator('username', {
-								initialValue: '',
 								rules: [
 									{
 										required: true,
-										message: 'Please input your username!',
+										message: '请输入用户名!',
 									},
 								],
 							})(<Input placeholder="Username" type="input" />)}
             </Form.Item>
 					</Col>
-					<Col span={8}>
+		<Col span={24}>
+            <Form.Item label="密码：">
+							{getFieldDecorator('password', {
+								rules: [
+									{
+										required: true,
+										message: '请输入密码!',
+									},
+								],
+							})(<Input placeholder="Username" type="password" />)}
+            </Form.Item>
+					</Col>
+					<Col span={24}>
 						<Form.Item label="爱好：">
 							{getFieldDecorator('likes', {
 								rules: [
 									{
-										required: true,
+										required: false,
 										message: 'undefined',
 									},
 								],
 							})(
 							<Checkbox.Group style={{ width: '100%' }}>
 								<Row>
-									<Col span={8}>
+									<Col span={6}>
 										<Checkbox value="1">羽毛球</Checkbox>
 									</Col>
-										<Col span={8}>
+										<Col span={6}>
 										<Checkbox value="2">乒乓球</Checkbox>
 									</Col>
 								</Row>
@@ -68,13 +83,13 @@ class Page1 extends Component {
 							)}
 						</Form.Item>
 					</Col>
-					<Col span={8}>
+					<Col span={24}>
 						<Form.Item label="性别：">
 							{getFieldDecorator('sex', {
 								rules: [
 									{
 										required: true,
-										message: 'undefined',
+										message: '请选择性别!',
 									},
 								],
 							})(
@@ -85,14 +100,13 @@ class Page1 extends Component {
 							)}
 						</Form.Item>
 					</Col>
-					<Col span={8}>
+					<Col span={24}>
 						<Form.Item label="朋友：">
 							{getFieldDecorator('friend', {
-								initialValue: '1',
 								rules: [
 									{
 										required: true,
-										message: 'undefined',
+										message: '请选择朋友!',
 									},
 								],
 							})(
@@ -106,10 +120,10 @@ class Page1 extends Component {
 					</Col>
 				</Row>
 				<Row>
-					<Button type="primary" style={{ marginRight: 8 }} htmlType="submit">submit</Button>
-					<Button type="primary" style={{ marginRight: 8 }} onClick={this.handleReset}>reset</Button>
-					<Button type="primary" style={{ marginRight: 8 }} onClick={this.handleReset}>reset</Button>
-					<Button type="primary" style={{ marginRight: 8 }} onClick={this.handleReset}>reset</Button>	
+					<Form.Item label=" " colon={false}>
+						<Button type="primary" style={{ marginRight: 8 }} htmlType="submit">submit</Button>
+						<Button type="primary" style={{ marginRight: 8 }} onClick={this.handleReset}>reset</Button>
+					</Form.Item>
 				</Row>
 				</Form>
 			</div>
