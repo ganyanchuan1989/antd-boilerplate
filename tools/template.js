@@ -77,8 +77,35 @@ class {tmpServiceName} {
 export default new {tmpServiceName}();
 `;
 
+
+const WELCOME_TEMPLATE = `import React from 'react';
+import {{Link}} from 'react-router-dom';
+
+const tStyle = {{textAlign: 'center', height: 100, fontSize: 40, lineHeight: '100px'}};
+
+class Welcome extends React.Component {{
+  
+  jumpToUrl=(url) => {{
+    const {{history}} = this.props;
+    history.push({{pathname: url}});
+  }}
+  render() {{
+    return (
+      <div>
+				<p style={{tStyle}}>页面生成工具</p>
+        <div>
+				{tmpBtns}
+        </div>
+      </div>
+    );
+  }}
+}}
+export default Welcome;
+`;
+
 module.exports = {
     ROUTE_TEMPLATE,
 		PAGE_TEMPLATE,
 		SERVICE_TEMPLATE,
+		WELCOME_TEMPLATE,
 };

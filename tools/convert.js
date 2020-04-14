@@ -9,7 +9,7 @@ const VIEW_DIR = path.resolve(__dirname, '../src/views/');
 const SERVICE_DIR = path.resolve(__dirname, '../src/services/');
 
 // Template files
-const { ROUTE_TEMPLATE, PAGE_TEMPLATE, SERVICE_TEMPLATE } = require('./template');
+const { ROUTE_TEMPLATE, PAGE_TEMPLATE, SERVICE_TEMPLATE, WELCOME_TEMPLATE } = require('./template');
 
 // Get document, or throw exception on error
 try {
@@ -17,6 +17,7 @@ try {
 		fs.readFileSync(path.resolve(__dirname, './schema.yml'), 'utf8')
 	);
 	generateRoutes(pages);
+	generateIndexPageBtns(pages);
 } catch (e) {
 	console.log(e);
 }
@@ -258,4 +259,22 @@ function generateService(page) {
 
 	const servicePath = path.join(SERVICE_DIR, clsname + 'Service.js');
 	fs.writeFileSync(servicePath, pageStr, 'utf8');
+}
+
+
+function generateIndexPageBtns(pages) {
+	let welBtnsStr = '';
+	pages.forEach((page) => {
+		const { clsname, routepath } = page.page;
+		welBtnsStr += `	<p>
+						<Link to="${routepath}">${clsname}</Link>
+					</p>
+					`;
+	});
+
+	welBtnsStr = rmLastLine(welBtnsStr);
+
+	welBtnsStr = format(WELCOME_TEMPLATE, {tmpBtns: welBtnsStr});
+	const welPath = path.join(VIEW_DIR, 'index.js');
+	fs.writeFileSync(welPath, welBtnsStr, 'utf8');
 }
