@@ -10,7 +10,7 @@
             label: "用户名：",
             required: true,
             message: "请输入用户名!",
-            col: 24,
+            col: 12,
           }
         - {
             type: "password",
@@ -18,7 +18,7 @@
             label: "密码：",
             required: true,
             message: "请输入密码!",
-            col: 24,
+            col: 12,
           }
         - {
             type: "checkbox",
@@ -67,7 +67,7 @@
             label: "用户名：",
             required: true,
             message: "请输入用户名!",
-            col: 24,
+            col: 12,
           }
         - {
             type: "password",
@@ -75,7 +75,7 @@
             label: "密码：",
             required: true,
             message: "请输入密码!",
-            col: 24,
+            col: 12,
           }
         - {
             type: "checkbox",
@@ -112,3 +112,232 @@
       btns:
         - { type: "submit", label: "submit", action: "/hello.do" }
         - { type: "reset", label: "reset" }
+- page:
+    clsname: "Page3"
+    routepath: "/page3"
+    form:
+      title: 用户信息
+      formitems:
+        - {
+            type: "input",
+            name: "username",
+            label: "用户名：",
+            required: true,
+            message: "请输入用户名!",
+            col: 12,
+          }
+        - {
+            type: "password",
+            name: "password",
+            label: "密码：",
+            required: true,
+            message: "请输入密码!",
+            col: 12,
+          }
+        - {
+            type: "checkbox",
+            name: "likes",
+            label: "爱好：",
+            required: false,
+            col: 24,
+            values:
+              [{ label: "羽毛球", value: 1 }, { label: "乒乓球", value: 2 }],
+          }
+        - {
+            type: "radio",
+            name: "sex",
+            label: "性别：",
+            required: true,
+            message: "请选择性别!",
+            col: 24,
+            values: [{ label: "男", value: 0 }, { label: "女", value: 1 }],
+          }
+        - {
+            type: "select",
+            name: "friend",
+            label: "朋友：",
+            required: true,
+            message: "请选择朋友!",
+            col: 24,
+            values:
+              [
+                { label: "Lucy", value: "Lucy" },
+                { label: "Jack", value: "Jack" },
+                { label: "Jack2", value: "Jack2" },
+              ],
+          }
+      btns:
+        - { type: "submit", label: "submit", action: "/hello.do" }
+        - { type: "reset", label: "reset" }
+- page:
+    clsname: "Page6"
+    routepath: "/page6"
+    form:
+      title: 用户信息
+      formitems:
+        - {
+            type: "input",
+            name: "username",
+            label: "用户名：",
+            required: true,
+            message: "请输入用户名!",
+            col: 12,
+          }
+        - {
+            type: "password",
+            name: "password",
+            label: "密码：",
+            required: true,
+            message: "请输入密码!",
+            col: 12,
+          }
+        - {
+            type: "checkbox",
+            name: "likes",
+            label: "爱好：",
+            required: false,
+            col: 24,
+            values:
+              [{ label: "羽毛球", value: 1 }, { label: "乒乓球", value: 2 }],
+          }
+        - {
+            type: "radio",
+            name: "sex",
+            label: "性别：",
+            required: true,
+            message: "请选择性别!",
+            col: 24,
+            values: [{ label: "男", value: 0 }, { label: "女", value: 1 }],
+          }
+        - {
+            type: "select",
+            name: "friend",
+            label: "朋友：",
+            required: true,
+            message: "请选择朋友!",
+            col: 24,
+            values:
+              [
+                { label: "Lucy", value: "Lucy" },
+                { label: "Jack", value: "Jack" },
+                { label: "Jack2", value: "Jack2" },
+              ],
+          }
+      btns:
+        - { type: "submit", label: "submit", action: "/hello.do" }
+        - { type: "reset", label: "reset" }
+- page:
+    clsname: "Page4"
+    routepath: "/page4"
+    form:
+      title: 用户信息
+      formitems:
+        - {
+            type: "input",
+            name: "username",
+            label: "用户名：",
+            required: true,
+            message: "请输入用户名!",
+            col: 12,
+          }
+        - {
+            type: "password",
+            name: "password",
+            label: "密码：",
+            required: true,
+            message: "请输入密码!",
+            col: 12,
+          }
+        - {
+            type: "checkbox",
+            name: "likes",
+            label: "爱好：",
+            required: false,
+            col: 24,
+            values:
+              [{ label: "羽毛球", value: 1 }, { label: "乒乓球", value: 2 }],
+          }
+        - {
+            type: "radio",
+            name: "sex",
+            label: "性别：",
+            required: true,
+            message: "请选择性别!",
+            col: 24,
+            values: [{ label: "男", value: 0 }, { label: "女", value: 1 }],
+          }
+        - {
+            type: "select",
+            name: "friend",
+            label: "朋友：",
+            required: true,
+            message: "请选择朋友!",
+            col: 24,
+            values:
+              [
+                { label: "Lucy", value: "Lucy" },
+                { label: "Jack", value: "Jack" },
+                { label: "Jack2", value: "Jack2" },
+              ],
+          }
+      btns:
+        - { type: "submit", label: "submit", action: "/hello.do" }
+        - { type: "reset", label: "reset" }
+- page:
+    clsname: "Page5"
+    routepath: "/page5"
+    form:
+      title: 用户信息
+      formitems:
+        - {
+            type: "input",
+            name: "username",
+            label: "用户名：",
+            required: true,
+            message: "请输入用户名!",
+            col: 12,
+          }
+        - {
+            type: "password",
+            name: "password",
+            label: "密码：",
+            required: true,
+            message: "请输入密码!",
+            col: 12,
+          }
+        - {
+            type: "checkbox",
+            name: "likes",
+            label: "爱好：",
+            required: false,
+            col: 24,
+            values:
+              [{ label: "羽毛球", value: 1 }, { label: "乒乓球", value: 2 }],
+          }
+        - {
+            type: "radio",
+            name: "sex",
+            label: "性别：",
+            required: true,
+            message: "请选择性别!",
+            col: 24,
+            values: [{ label: "男", value: 0 }, { label: "女", value: 1 }],
+          }
+        - {
+            type: "select",
+            name: "friend",
+            label: "朋友：",
+            required: true,
+            message: "请选择朋友!",
+            col: 24,
+            values:
+              [
+                { label: "Lucy", value: "Lucy" },
+                { label: "Jack", value: "Jack" },
+                { label: "Jack2", value: "Jack2" },
+              ],
+          }
+      btns:
+        - { type: "submit", label: "submit", action: "/hello.do" }
+        - { type: "reset", label: "reset" }
+        

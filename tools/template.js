@@ -42,14 +42,14 @@ class {tmpClsname} extends Component {{
 		return (
 			<div>
 				<Form {{...formItemLayout}} onSubmit={{this.handleSubmit}}>
-				<Row>
-				{tmpForm}
-				</Row>
-				<Row>
-					<Form.Item label=" " colon={{false}}>
-					{tmpFormButton}
-					</Form.Item>
-				</Row>
+					<Row>
+						{tmpForm}
+					</Row>
+					<Row>
+						<Form.Item label=" " colon={{false}}>
+						{tmpFormButton}
+						</Form.Item>
+					</Row>
 				</Form>
 			</div>
 		);

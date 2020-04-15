@@ -20,9 +20,11 @@
   "dependencies": {
     "antd": "^3.22.2",
     "classnames": "^2.2.6",
+    "glob": "^7.1.6",
     "history": "^3.0.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
+    "prettier": "^2.0.4",
     "query-string": "^5.1.1",
     "rc-form": "^2.4.3",
     "react": "^16.0.0",

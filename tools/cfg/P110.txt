@@ -1,0 +1,7 @@
+*姓名/input|*密码/password
+爱好/checkbox/羽毛球,乒乓球
+性别/radio/男,女
+*好友/select/lili,lucy
+*姓名/input/
+*姓名/input/
+-/action.do
