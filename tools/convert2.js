@@ -37,8 +37,8 @@ function generateRoutes(pages) {
 	let routesStr = '';
 		pages.forEach((page) => {
 			const {name } = page;
-			routesStr += `'${name}': {
-		module: lazyLoad(() => import('VIEW${name}/index')),
+			routesStr += `'/${name}': {
+		module: lazyLoad(() => import('VIEW/${name}/index')),
 		},\n`;
 		});
 

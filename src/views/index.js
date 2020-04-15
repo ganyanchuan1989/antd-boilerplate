@@ -7,6 +7,7 @@ const tStyle = {
   fontSize: 40,
   lineHeight: '100px',
 };
+const bStyle = { width: 600, margin: 'auto' };
 
 class Welcome extends React.Component {
   jumpToUrl = (url) => {
@@ -17,7 +18,7 @@ class Welcome extends React.Component {
     return (
       <div>
         <p style={tStyle}>页面生成工具</p>
-        <div>
+        <div style={bStyle}>
           <p>
             <Link to="P110">P110</Link>
           </p>

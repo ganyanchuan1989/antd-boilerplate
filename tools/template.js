@@ -82,6 +82,7 @@ const WELCOME_TEMPLATE = `import React from 'react';
 import {{Link}} from 'react-router-dom';
 
 const tStyle = {{textAlign: 'center', height: 100, fontSize: 40, lineHeight: '100px'}};
+const bStyle = {{ width: 600, margin: 'auto'}};
 
 class Welcome extends React.Component {{
   
@@ -93,7 +94,7 @@ class Welcome extends React.Component {{
     return (
       <div>
 				<p style={{tStyle}}>页面生成工具</p>
-        <div>
+        <div style={{bStyle}}>
 				{tmpBtns}
         </div>
       </div>
