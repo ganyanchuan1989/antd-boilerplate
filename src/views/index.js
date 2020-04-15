@@ -19,6 +19,10 @@ class Welcome extends React.Component {
       <div>
         <p style={tStyle}>页面生成工具</p>
         <div style={bStyle}>
+          <Link to="/jsFiddle">jsFiddle</Link>
+          <p>
+            <Link to="P100">P100</Link>
+          </p>
           <p>
             <Link to="P110">P110</Link>
           </p>

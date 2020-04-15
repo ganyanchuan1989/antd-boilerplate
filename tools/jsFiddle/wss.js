@@ -11,7 +11,8 @@ wss.on('connection', (wsc) => {
 		if (cmd === 'go') {
       console.log('data', data);
       const lines = code.split('\n');
-			generateDemoPage('JSFiddleDemo', lines);
+			const pageStr = generateDemoPage('JSFiddleDemo', lines);
+			wsc.send(pageStr);
 		}
 	});
 });

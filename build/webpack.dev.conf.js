@@ -37,18 +37,18 @@ config.plugins.push(
 	new ProgressBarPlugin(),
 	new webpack.optimize.OccurrenceOrderPlugin(),
 	new webpack.HotModuleReplacementPlugin(),
-	new BrowserSyncPlugin(
-		{
-			host: "127.0.0.1",
-			port: 9090,
-			proxy: `http://127.0.0.1:9000${PUBLIC_PATH}index.html`,
-			logConnections: false,
-			notify: false
-		},
-		{
-			reload: false
-		}
-	)
+	// new BrowserSyncPlugin(
+	// 	{
+	// 		host: "127.0.0.1",
+	// 		port: 9090,
+	// 		proxy: `http://127.0.0.1:9000${PUBLIC_PATH}index.html`,
+	// 		logConnections: false,
+	// 		notify: false
+	// 	},
+	// 	{
+	// 		reload: false
+	// 	}
+	// )
 );
 
 module.exports = config;

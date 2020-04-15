@@ -5,7 +5,10 @@ const format = require('string-format');
 const prettier = require('prettier');
 
 // Resource Path
-const JSFiddle_DEMO_PATH = path.resolve(__dirname, '../src/views/jsFiddle/demo.js');
+const JSFiddle_DEMO_PATH = path.resolve(
+	__dirname,
+	'../../src/views/jsFiddle/demo.js'
+);
 
 // Template files
 const { PAGE_TEMPLATE } = require('./template');
@@ -13,14 +16,9 @@ const { PAGE_TEMPLATE } = require('./template');
 // 字段索引 Field1, Field2
 let Fld_Idx = 0;
 
-module.exports = function generateDemoPage (pageName, lines) {
+module.exports = function generateDemoPage(pageName, lines) {
 	Fld_Idx = 0;
 	const importAntdStr = generateImportAntd(lines);
-	// console.log(importAntdStr);
-	// const importServiceStr = generateImportService(pageName);
-	// console.log(importServiceStr);
-	// const serviceActionStr = generateServiceAction(pageName);
-	// console.log(serviceActionStr);
 	const formStr = generatePageForm(lines);
 	// console.log(formStr);
 	const btnStr = generatePageFormButton(lines);
@@ -40,6 +38,8 @@ module.exports = function generateDemoPage (pageName, lines) {
 	});
 
 	fs.writeFileSync(JSFiddle_DEMO_PATH, pageStr, 'utf8');
+
+	return pageStr;
 };
 
 function generatePageForm(lines) {
@@ -59,7 +59,8 @@ function generateFields(line) {
 		Fld_Idx++; // 字段索引
 		const required = field.indexOf('*') > -1;
 		const infos = field.split('/');
-		const label = infos[0].trim();
+		let label = infos[0].trim();
+		label = required ? label.substring(1) : label;
 		const type = infos[1].trim();
 		let values = [];
 		if (type === 'checkbox' || type === 'radio' || type === 'select') {
@@ -67,6 +68,14 @@ function generateFields(line) {
 		}
 		if (type === 'input' || type === 'password')
 			formStr += generatePageFormItemInput({
+				label,
+				required,
+				type,
+				col,
+				index: Fld_Idx,
+			});
+		if (type === 'textarea')
+			formStr += generatePageFormItemTextArea({
 				label,
 				required,
 				type,
@@ -123,10 +132,9 @@ function generatePageFormItemInput({ required, label, type, col, index }) {
 
 function generatePageFormItemCheckbox({ label, required, col, index, values }) {
 	let valueStr = '';
-	values.forEach((valueItem) => {
-		const { label, value } = valueItem;
+	values.forEach((value) => {
 		valueStr += `	<Col span={6}>
-										<Checkbox value="${value}">${label}</Checkbox>
+										<Checkbox value="${value}">${value}</Checkbox>
 									</Col>
 									`;
 	});
@@ -155,9 +163,8 @@ function generatePageFormItemCheckbox({ label, required, col, index, values }) {
 
 function generatePageFormItemRadio({ label, required, col, values, index }) {
 	let valueStr = '';
-	values.forEach((valueItem) => {
-		const { label, value } = valueItem;
-		valueStr += `	<Radio value="${value}">${label}</Radio>
+	values.forEach((value) => {
+		valueStr += `	<Radio value="${value}">${value}</Radio>
 							`;
 	});
 
@@ -182,9 +189,8 @@ function generatePageFormItemRadio({ label, required, col, values, index }) {
 
 function generatePageFormItemSelect({ label, required, col, index, values }) {
 	let valueStr = '';
-	values.forEach((valueItem) => {
-		const { label, value } = valueItem;
-		valueStr += `	<Select.Option value="${value}">${label}</Select.Option>
+	values.forEach((value) => {
+		valueStr += `	<Select.Option value="${value}">${value}</Select.Option>
 								`;
 	});
 	return `				
@@ -206,15 +212,6 @@ function generatePageFormItemSelect({ label, required, col, index, values }) {
 	`;
 }
 
-function generateServiceAction(pageName) {
-	// tmpServiceAction
-	return `${pageName}Service.action(values);`;
-}
-
-function generateImportService(pageName) {
-	return `import ${pageName}Service from 'SERVICE/${pageName}Service';`;
-}
-
 function generateImportAntd(lines) {
 	let compStr = '';
 	lines.forEach((line) => {
@@ -222,7 +219,7 @@ function generateImportAntd(lines) {
 		subLines.forEach((subLine) => {
 			const type = subLine.split('/')[1];
 			if (
-				(type == 'input' || type == 'password') &&
+				(type == 'input' || type == 'password' || type == 'textarea') &&
 				compStr.indexOf('Input') < 0
 			)
 				compStr += ', Input'; // 输入框
@@ -242,4 +239,21 @@ function generatePageFormButton(lines) {
 		'<Button type="primary" style={{ marginRight: 8 }} htmlType="submit">提交</Button>';
 
 	return btnStr;
+}
+
+
+function generatePageFormItemTextArea({required, label, col, index }) {
+	let areaStr = `
+							<Col span={${col}}>
+								<Form.Item label="${label}">
+									{getFieldDecorator('Field${index}', {
+										rules: [
+											{
+												required: ${required},
+											},
+										],
+									})(<Input.TextArea placeholder="Username"/>)}
+								</Form.Item>
+							</Col>`;
+	return areaStr;
 }

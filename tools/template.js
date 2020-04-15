@@ -94,7 +94,8 @@ class Welcome extends React.Component {{
     return (
       <div>
 				<p style={{tStyle}}>页面生成工具</p>
-        <div style={{bStyle}}>
+				<div style={{bStyle}}>
+					<Link to="/jsFiddle">jsFiddle</Link>
 				{tmpBtns}
         </div>
       </div>

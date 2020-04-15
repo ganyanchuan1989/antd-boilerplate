@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Form, Input, Checkbox, Radio, Select } from 'antd';
+import { Row, Col, Button, Form, Checkbox, Radio, Select, Input } from 'antd';
+import P100Service from 'SERVICE/P100Service';
 
 const formItemLayout = {
   labelCol: {
@@ -12,12 +13,13 @@ const formItemLayout = {
   },
 };
 
-class JSFiddleDemo extends Component {
+class P100 extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        P100Service.action(values);
       } else {
         console.log(err);
       }
@@ -71,7 +73,12 @@ class JSFiddleDemo extends Component {
                         <Checkbox value="羽毛球">羽毛球</Checkbox>
                       </Col>
                       <Col span={6}>
-                        <Checkbox value="乒乓球">乒乓球</Checkbox>
+                        <Checkbox
+                          value="乒乓球
+"
+                        >
+                          乒乓球
+                        </Checkbox>
                       </Col>
                     </Row>
                   </Checkbox.Group>
@@ -90,7 +97,12 @@ class JSFiddleDemo extends Component {
                 })(
                   <Radio.Group>
                     <Radio value="男">男</Radio>
-                    <Radio value="女">女</Radio>
+                    <Radio
+                      value="女
+"
+                    >
+                      女
+                    </Radio>
                   </Radio.Group>
                 )}
               </Form.Item>
@@ -106,12 +118,20 @@ class JSFiddleDemo extends Component {
                   ],
                 })(
                   <Select>
-                    <Select.Option value="lili">lili</Select.Option>
-                    <Select.Option value="lucy">lucy</Select.Option>
+                    <Select.Option value="lili"></Select.Option>
+                    <Select.Option
+                      value="lucy
+"
+                    >
+                      {' '}
+                      <Select.Option value="lili"></Select.Option>
+                    </Select.Option>
                   </Select>
                 )}
               </Form.Item>
             </Col>
+            <Input.TextArea placeholder="Username" />
+            
           </Row>
           <Row>
             <Form.Item label=" " colon={false}>
@@ -130,4 +150,4 @@ class JSFiddleDemo extends Component {
   }
 }
 
-export default Form.create()(JSFiddleDemo);
+export default Form.create()(P100);
