@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FiddleTest</title>
+  </head>
+  <script>
+    function test() {
+      const ws = new WebSocket("ws://127.0.0.1:12345/");
+      ws.onopen = (event) => {
+        if (ws.readyState === 1) {
+          ws.send(
+            JSON.stringify({
+              cmd: "go",
+              code: document.getElementById("txt").value,
+            })
+          );
+        }
+      };
+    }
+  </script>
+  <body>
+    <textarea id="txt" style="height: 400px">
+*姓名/input|*密码/password
+爱好/checkbox/羽毛球,乒乓球
+性别/radio/男,女
+*好友/select/lili,lucy
+*姓名/input/
+*姓名/input/</textarea
+    >
+    <button onclick="test()">test</button>
+  </body>
+</html>

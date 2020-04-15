@@ -2,7 +2,7 @@ import React from 'react';
 import { message } from 'antd';
 
 export default class NotFound extends React.Component {
-	componentWillMount() {
+	componentDidMount() {
 		message.error('此页面暂无内容');
 		this.props.history.goBack();
 	}

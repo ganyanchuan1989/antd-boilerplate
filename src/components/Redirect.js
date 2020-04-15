@@ -14,12 +14,11 @@ import queryString from 'query-string';
  * 在 JS 中：this.props.history.replace('/redirect?dest=/foo')
  */
 class Redirect extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.history.replace( // 可以直接通过 props 获取 router
       queryString.parse(this.props.location.search).dest
     );
   }
-
   render () {
     // 非实体组件需显式返回 null
     return null;

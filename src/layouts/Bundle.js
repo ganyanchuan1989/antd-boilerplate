@@ -8,7 +8,7 @@ export default class Bundle extends PureComponent {
     mod: null,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.load(this.props);
   }
 

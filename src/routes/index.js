@@ -13,6 +13,14 @@ export const getRouteData = () => {
 			module: lazyLoad(() => import('VIEW/form')),
 			layout: BasicLayout,
 		},
+		'/jsFiddle': {
+			module: lazyLoad(() => import('VIEW/jsFiddle/index')),
+			layout: BasicLayout,
+		},
+		'/jsFiddleDemo': {
+			module: lazyLoad(() => import('VIEW/jsFiddle/demo')),
+			layout: BasicLayout,
+		},
 		...routes,
 		// 强制“刷新”页面的 hack
 		'/redirect': { module: lazyLoad(() => import('COMPONENT/Redirect')) },
