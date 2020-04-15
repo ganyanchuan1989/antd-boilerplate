@@ -4,8 +4,9 @@
   "author": "ganxz",
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently \" npm run start\" \"node ./tools/jsFiddle/wss.js\"",
+    "dev": "concurrently \" npm run start\" \"npm run wss\"",
     "start": "cross-env NODE_ENV=development node build/dev.js",
+    "wss": "node ./tools/jsFiddle/wss.js",
     "build": "cross-env NODE_ENV=production node build/prod.js",
     "bundle-analyzer": "cross-env NODE_ENV=production node build/prod.js analyzer",
     "lint": "eslint --ext .js,.jsx src",
