@@ -20,6 +20,6 @@ wss.on('connection', (wsc) => {
 function rmEmptyLine(lines) {
 	// 过滤空行
 	lines = lines.filter((line) => line !== null && line.trim() !== '');
-	console.log('lines', lines);
+	// console.log('lines', lines);
 	return lines;
 }
