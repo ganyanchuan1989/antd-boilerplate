@@ -2,16 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button, Form, Checkbox, Radio, Select, Input } from 'antd';
 import P100Service from 'SERVICE/P100Service';
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 6 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 12 },
-  },
-};
+import styles from '../index.less';
 
 class P100 extends Component {
   handleSubmit = (e) => {
@@ -33,11 +24,11 @@ class P100 extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div>
-        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <div className={styles.FormContainer}>
+        <Form onSubmit={this.handleSubmit}>
           <Row>
             <Col span={24}>
-              <Form.Item label="姓名">
+              <Form.Item label="姓名" className={styles.FormItem}>
                 {getFieldDecorator('Field1', {
                   rules: [
                     {
@@ -48,7 +39,7 @@ class P100 extends Component {
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="密码">
+              <Form.Item label="密码" className={styles.FormItem}>
                 {getFieldDecorator('Field2', {
                   rules: [
                     {
@@ -59,7 +50,7 @@ class P100 extends Component {
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="爱好">
+              <Form.Item label="爱好" className={styles.FormItem}>
                 {getFieldDecorator('Field3', {
                   rules: [
                     {
@@ -68,26 +59,22 @@ class P100 extends Component {
                   ],
                 })(
                   <Checkbox.Group style={{ width: '100%' }}>
-                    <Row>
-                      <Col span={6}>
-                        <Checkbox value="羽毛球">羽毛球</Checkbox>
-                      </Col>
-                      <Col span={6}>
-                        <Checkbox
-                          value="乒乓球
+                    <div style={{ display: 'flex' }}>
+                      <Checkbox value="羽毛球">羽毛球</Checkbox>
+                      <Checkbox
+                        value="乒乓球
 "
-                        >
-                          乒乓球
-                        </Checkbox>
-                      </Col>
-                    </Row>
+                      >
+                        乒乓球
+                      </Checkbox>
+                    </div>
                   </Checkbox.Group>
                 )}
               </Form.Item>
             </Col>
 
             <Col span={24}>
-              <Form.Item label="性别">
+              <Form.Item label="性别" className={styles.FormItem}>
                 {getFieldDecorator('Field4', {
                   rules: [
                     {
@@ -109,7 +96,7 @@ class P100 extends Component {
             </Col>
 
             <Col span={24}>
-              <Form.Item label="好友">
+              <Form.Item label="好友" className={styles.FormItem}>
                 {getFieldDecorator('Field5', {
                   rules: [
                     {
@@ -131,7 +118,7 @@ class P100 extends Component {
             </Col>
 
             <Col span={24}>
-              <Form.Item label="简介">
+              <Form.Item label="简介" className={styles.FormItem}>
                 {getFieldDecorator('Field6', {
                   rules: [
                     {
@@ -143,7 +130,7 @@ class P100 extends Component {
             </Col>
           </Row>
           <Row>
-            <Form.Item label=" " colon={false}>
+            <Form.Item label=" " colon={false} className={styles.FormItem}>
               <Button
                 type="primary"
                 style={{ marginRight: 8 }}
