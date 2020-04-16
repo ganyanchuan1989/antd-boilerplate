@@ -42,6 +42,8 @@ function generateRoutes(pages) {
 		},\n`;
 		});
 
+		console.log('routesStr', routesStr);
+
 		routesStr = format(ROUTE_TEMPLATE, {routes: routesStr});
 		routesStr = prettier.format(routesStr, { semi: true, parser: 'babel', singleQuote: true });
 		fs.writeFileSync(ROUTES_PATH, routesStr, 'utf8');

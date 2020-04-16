@@ -2,6 +2,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 const format = require('string-format');
+const prettier = require('prettier');
 
 // Resource Path
 const ROUTES_PATH = path.resolve(__dirname, '../src/routes/routes.js');
@@ -24,19 +25,20 @@ try {
 
 // 生成routes
 function generateRoutes(pages) {
-	let routes_str = '';
+	let routesStr = '';
 		pages.forEach((page) => {
 			generatePage(page.page);
 			const { routepath } = page.page;
 			console.log(routepath);
-			routes_str += `'${routepath}': {
+			routesStr += `'${routepath}': {
 		module: lazyLoad(() => import('VIEW${routepath}/index')),
 	},\n`;
 		});
 
-		routes_str = format(ROUTE_TEMPLATE, {routes: routes_str});
+		routesStr = format(ROUTE_TEMPLATE, {routes: routesStr});
 
-		fs.writeFileSync(ROUTES_PATH, routes_str, 'utf8');
+		routesStr = prettier.format(routesStr, { semi: true, parser: 'babel', singleQuote: true });
+		fs.writeFileSync(ROUTES_PATH, routesStr, 'utf8');
 }
 
 // 生成页面
@@ -52,7 +54,7 @@ function generatePage(page) {
 	const btnStr = generatePageFormButton(form);
 	// console.log(btnStr);
 
-	const pageStr = format(PAGE_TEMPLATE, {
+	let pageStr = format(PAGE_TEMPLATE, {
 		tmpImportAntd: importAntdStr,
 		tmpImportService: importServiceStr,
 		tmpServiceAction: serviceActionStr,
@@ -60,6 +62,8 @@ function generatePage(page) {
 		tmpForm: formStr,
 		tmpFormButton: btnStr,
 	});
+
+	pageStr = prettier.format(pageStr, { semi: true, parser: 'babel', singleQuote: true });
 
 	const parentDir = path.join(VIEW_DIR, clsname);
 	const pagePath = path.join(parentDir, '/index.js');
@@ -251,14 +255,15 @@ function generateService(page) {
 	let subBtn = btns.filter((btn) => (btn.type === 'submit'))[0];
 	const {action} = subBtn;
 
-	const pageStr = format(SERVICE_TEMPLATE, {
+	let serviceStr = format(SERVICE_TEMPLATE, {
 		tmpServiceName: `${clsname}Service`,
 		tmpUrl: action,
 	});
 
-
+	serviceStr = prettier.format(serviceStr, { semi: true, parser: 'babel', singleQuote: true });
+	
 	const servicePath = path.join(SERVICE_DIR, clsname + 'Service.js');
-	fs.writeFileSync(servicePath, pageStr, 'utf8');
+	fs.writeFileSync(servicePath, serviceStr, 'utf8');
 }
 
 
