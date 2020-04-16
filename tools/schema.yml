@@ -7,7 +7,7 @@
         - {
             type: "input",
             name: "username",
-            label: "用户名：",
+            label: "用户名",
             required: true,
             message: "请输入用户名!",
             col: 24,
@@ -15,7 +15,7 @@
         - {
             type: "password",
             name: "password",
-            label: "密码：",
+            label: "密码",
             required: true,
             message: "请输入密码!",
             col: 24,
@@ -23,7 +23,7 @@
         - {
             type: "checkbox",
             name: "likes",
-            label: "爱好：",
+            label: "爱好",
             required: false,
             col: 24,
             values:
@@ -32,7 +32,7 @@
         - {
             type: "radio",
             name: "sex",
-            label: "性别：",
+            label: "性别",
             required: true,
             message: "请选择性别!",
             col: 24,
@@ -41,7 +41,7 @@
         - {
             type: "select",
             name: "friend",
-            label: "朋友：",
+            label: "朋友",
             required: true,
             message: "请选择朋友!",
             col: 24,
@@ -55,7 +55,7 @@
         - {
             type: "textarea",
             name: "desc",
-            label: "简介：",
+            label: "简介",
             required: true,
             message: "请输入简介!",
             col: 24,
@@ -72,7 +72,7 @@
         - {
             type: "input",
             name: "username",
-            label: "用户名：",
+            label: "用户名",
             required: true,
             message: "请输入用户名!",
             col: 12,
@@ -80,7 +80,7 @@
         - {
             type: "password",
             name: "password",
-            label: "密码：",
+            label: "密码",
             required: true,
             message: "请输入密码!",
             col: 12,
@@ -88,7 +88,7 @@
         - {
             type: "checkbox",
             name: "likes",
-            label: "爱好：",
+            label: "爱好",
             required: false,
             col: 24,
             values:
@@ -97,7 +97,7 @@
         - {
             type: "radio",
             name: "sex",
-            label: "性别：",
+            label: "性别",
             required: true,
             message: "请选择性别!",
             col: 24,
@@ -106,7 +106,7 @@
         - {
             type: "select",
             name: "friend",
-            label: "朋友：",
+            label: "朋友",
             required: true,
             message: "请选择朋友!",
             col: 24,
@@ -129,7 +129,7 @@
         - {
             type: "input",
             name: "username",
-            label: "用户名：",
+            label: "用户名",
             required: true,
             message: "请输入用户名!",
             col: 12,
@@ -137,7 +137,7 @@
         - {
             type: "password",
             name: "password",
-            label: "密码：",
+            label: "密码",
             required: true,
             message: "请输入密码!",
             col: 12,
@@ -145,7 +145,7 @@
         - {
             type: "checkbox",
             name: "likes",
-            label: "爱好：",
+            label: "爱好",
             required: false,
             col: 24,
             values:
@@ -154,7 +154,7 @@
         - {
             type: "radio",
             name: "sex",
-            label: "性别：",
+            label: "性别",
             required: true,
             message: "请选择性别!",
             col: 24,
@@ -163,7 +163,7 @@
         - {
             type: "select",
             name: "friend",
-            label: "朋友：",
+            label: "朋友",
             required: true,
             message: "请选择朋友!",
             col: 24,
@@ -186,7 +186,7 @@
         - {
             type: "input",
             name: "username",
-            label: "用户名：",
+            label: "用户名",
             required: true,
             message: "请输入用户名!",
             col: 12,
@@ -194,7 +194,7 @@
         - {
             type: "password",
             name: "password",
-            label: "密码：",
+            label: "密码",
             required: true,
             message: "请输入密码!",
             col: 12,
@@ -202,7 +202,7 @@
         - {
             type: "checkbox",
             name: "likes",
-            label: "爱好：",
+            label: "爱好",
             required: false,
             col: 24,
             values:
@@ -211,7 +211,7 @@
         - {
             type: "radio",
             name: "sex",
-            label: "性别：",
+            label: "性别",
             required: true,
             message: "请选择性别!",
             col: 24,
@@ -220,7 +220,7 @@
         - {
             type: "select",
             name: "friend",
-            label: "朋友：",
+            label: "朋友",
             required: true,
             message: "请选择朋友!",
             col: 24,
@@ -243,7 +243,7 @@
         - {
             type: "input",
             name: "username",
-            label: "用户名：",
+            label: "用户名",
             required: true,
             message: "请输入用户名!",
             col: 12,
@@ -251,7 +251,7 @@
         - {
             type: "password",
             name: "password",
-            label: "密码：",
+            label: "密码",
             required: true,
             message: "请输入密码!",
             col: 12,
@@ -259,7 +259,7 @@
         - {
             type: "checkbox",
             name: "likes",
-            label: "爱好：",
+            label: "爱好",
             required: false,
             col: 24,
             values:
@@ -268,7 +268,7 @@
         - {
             type: "radio",
             name: "sex",
-            label: "性别：",
+            label: "性别",
             required: true,
             message: "请选择性别!",
             col: 24,
@@ -277,7 +277,7 @@
         - {
             type: "select",
             name: "friend",
-            label: "朋友：",
+            label: "朋友",
             required: true,
             message: "请选择朋友!",
             col: 24,
@@ -300,7 +300,7 @@
         - {
             type: "input",
             name: "username",
-            label: "用户名：",
+            label: "用户名",
             required: true,
             message: "请输入用户名!",
             col: 12,
@@ -308,7 +308,7 @@
         - {
             type: "password",
             name: "password",
-            label: "密码：",
+            label: "密码",
             required: true,
             message: "请输入密码!",
             col: 12,
@@ -316,7 +316,7 @@
         - {
             type: "checkbox",
             name: "likes",
-            label: "爱好：",
+            label: "爱好",
             required: false,
             col: 24,
             values:
@@ -325,7 +325,7 @@
         - {
             type: "radio",
             name: "sex",
-            label: "性别：",
+            label: "性别",
             required: true,
             message: "请选择性别!",
             col: 24,
@@ -334,7 +334,7 @@
         - {
             type: "select",
             name: "friend",
-            label: "朋友：",
+            label: "朋友",
             required: true,
             message: "请选择朋友!",
             col: 24,

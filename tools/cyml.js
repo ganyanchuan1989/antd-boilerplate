@@ -144,7 +144,7 @@ function generatePageFormItemInput(item) {
 										message: '${message}',
 									},
 								],
-							})(<Input placeholder="${label}" type="${type}" />)}
+							})(<Input placeholder="请输入${label}" type="${type}" />)}
             </Form.Item>
 					</Col>
 	`;
@@ -248,7 +248,7 @@ function generatePageFormItemSelect(formItem) {
 									},
 								],
 							})(
-								<Select>
+								<Select placeholder="请选择${label}">
 								${valueStr}
 								</Select>
 							)}
