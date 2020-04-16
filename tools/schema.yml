@@ -10,7 +10,7 @@
             label: "用户名：",
             required: true,
             message: "请输入用户名!",
-            col: 12,
+            col: 24,
           }
         - {
             type: "password",
@@ -18,7 +18,7 @@
             label: "密码：",
             required: true,
             message: "请输入密码!",
-            col: 12,
+            col: 24,
           }
         - {
             type: "checkbox",
@@ -51,6 +51,14 @@
                 { label: "Jack", value: "Jack" },
                 { label: "Jack2", value: "Jack2" },
               ],
+          }
+        - {
+            type: "textarea",
+            name: "desc",
+            label: "简介：",
+            required: true,
+            message: "请输入简介!",
+            col: 24,
           }
       btns:
         - { type: "submit", label: "submit", action: "/hello.do" }

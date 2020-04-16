@@ -14,20 +14,19 @@ const { ROUTE_TEMPLATE, PAGE_TEMPLATE, SERVICE_TEMPLATE, WELCOME_TEMPLATE } = re
 
 // Get document, or throw exception on error
 try {
-	const pages = yaml.safeLoad(
-		fs.readFileSync(path.resolve(__dirname, './schema.yml'), 'utf8')
-	);
+	const pages = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, './schema.yml'), 'utf8'));
 	generateRoutes(pages);
+	generateServices(pages);
+	generatePages(pages);
 	generateIndexPageBtns(pages);
 } catch (e) {
-	console.log(e);
+	console.error(e);
 }
 
 // 生成routes
 function generateRoutes(pages) {
 	let routesStr = '';
 		pages.forEach((page) => {
-			generatePage(page.page);
 			const { routepath } = page.page;
 			console.log(routepath);
 			routesStr += `'${routepath}': {
@@ -36,14 +35,26 @@ function generateRoutes(pages) {
 		});
 
 		routesStr = format(ROUTE_TEMPLATE, {routes: routesStr});
-
 		routesStr = prettier.format(routesStr, { semi: true, parser: 'babel', singleQuote: true });
 		fs.writeFileSync(ROUTES_PATH, routesStr, 'utf8');
 }
 
+// 生成services
+function generateServices(pages) {
+	pages.forEach((page) => {
+		generateService(page.page);
+	});
+}
+
+// 生成pages
+function generatePages(pages) {
+	pages.forEach((page) => {
+		generatePage(page.page);
+	});
+}
+
 // 生成页面
 function generatePage(page) {
-	generateService(page);
 	const { clsname, form } = page;
 	const importAntdStr = generateImportAntd(form);
 	const importServiceStr = generateImportService(page);
@@ -78,7 +89,7 @@ function generateImportAntd(form) {
 	const { formitems } = form;
 	formitems.forEach((item) => {
 		const { type } = item;
-		if ((type == 'input' || type == 'password') && compStr.indexOf('Input') < 0)
+		if ((type == 'input' || type == 'password' || type == 'textarea') && compStr.indexOf('Input') < 0)
 			compStr += ', Input'; // 输入框
 		if (type == 'checkbox' && compStr.indexOf('Checkbox') < 0)
 			compStr += ', Checkbox'; // 复选框
@@ -105,21 +116,21 @@ function generatePageFormButton(form) {
 		}
 	});
 
-	btnStr = rmLastLine(btnStr);
 	return btnStr;
 }
 
 function generatePageForm(form) {
 	const { formitems } = form;
-	let form_str = '';
+	let formStr = '';
 	formitems.forEach((item) => {
 		const { type } = item;
-		if (type === 'input' || type == 'password') form_str += generatePageFormItemInput(item);
-		if (type === 'checkbox') form_str += generatePageFormItemCheckbox(item);
-		if (type === 'radio') form_str += generatePageFormItemRadio(item);
-		if (type === 'select') form_str += generatePageFormItemSelect(item);
+		if (type === 'input' || type == 'password') formStr += generatePageFormItemInput(item);
+		if (type === 'textarea') formStr += generatePageFormItemTextArea(item);
+		if (type === 'checkbox') formStr += generatePageFormItemCheckbox(item);
+		if (type === 'radio') formStr += generatePageFormItemRadio(item);
+		if (type === 'select') formStr += generatePageFormItemSelect(item);
 	});
-	return rmLastLine(form_str);
+	return formStr;
 }
 
 function generatePageFormItemInput(item) {
@@ -133,10 +144,29 @@ function generatePageFormItemInput(item) {
 										message: '${message}',
 									},
 								],
-							})(<Input placeholder="Username" type="${type}" />)}
+							})(<Input placeholder="${label}" type="${type}" />)}
             </Form.Item>
 					</Col>
 	`;
+}
+
+
+function generatePageFormItemTextArea(item) {
+	const { name, label, required, message, col } = item;
+	let areaStr = `
+							<Col span={${col}}>
+								<Form.Item label="${label}">
+									{getFieldDecorator('${name}', {
+										rules: [
+											{
+												required: ${required},
+												message:'${message}'
+											},
+										],
+									})(<Input.TextArea placeholder="请输入${label}"/>)}
+								</Form.Item>
+							</Col>`;
+	return areaStr;
 }
 
 function generatePageFormItemCheckbox(formitem) {
@@ -149,7 +179,6 @@ function generatePageFormItemCheckbox(formitem) {
 									</Col>
 									`;
 	});
-	valueStr = rmLastLine(valueStr);
 
 	return `				<Col span={${col}}>
 						<Form.Item label="${label}">
@@ -180,7 +209,6 @@ function generatePageFormItemRadio(formItem) {
 		valueStr += `	<Radio value="${value}">${label}</Radio>
 							`;
 	});
-	valueStr = rmLastLine(valueStr);
 
 	return `				<Col span={${col}}>
 						<Form.Item label="${label}">
@@ -209,7 +237,6 @@ function generatePageFormItemSelect(formItem) {
 		valueStr += `	<Select.Option value="${value}">${label}</Select.Option>
 								`;
 	});
-	valueStr = rmLastLine(valueStr);
 
 	return `				<Col span={${col}}>
 						<Form.Item label="${label}">
@@ -228,14 +255,6 @@ function generatePageFormItemSelect(formItem) {
 						</Form.Item>
 					</Col>
 	`;
-}
-
-function rmLastLine(x) {
-	if (x.lastIndexOf('\n') > 0) {
-    return x.substring(0, x.lastIndexOf('\n'));
-	} else {
-		return x;
-	}
 }
 
 function generateImportService(page) {
@@ -276,8 +295,6 @@ function generateIndexPageBtns(pages) {
 					</p>
 					`;
 	});
-
-	welBtnsStr = rmLastLine(welBtnsStr);
 
 	welBtnsStr = format(WELCOME_TEMPLATE, {tmpBtns: welBtnsStr});
 	const welPath = path.join(VIEW_DIR, 'index.js');

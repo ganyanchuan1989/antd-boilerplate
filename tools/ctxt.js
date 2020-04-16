@@ -131,7 +131,7 @@ function generatePageFormItemInput({required, label, type, col, index }) {
 												required: ${required},
 											},
 										],
-									})(<Input placeholder="Username" type="${type}" />)}
+									})(<Input type="${type}" placeholder="请输入${label}" />)}
 								</Form.Item>
 							</Col>`;
 	return inputStr;
@@ -148,7 +148,7 @@ function generatePageFormItemTextArea({required, label, col, index }) {
 												required: ${required},
 											},
 										],
-									})(<Input.TextArea placeholder="Username"/>)}
+									})(<Input.TextArea placeholder="请输入${label}"/>)}
 								</Form.Item>
 							</Col>`;
 	return areaStr;
@@ -228,7 +228,7 @@ function generatePageFormItemSelect({label, required, col, index, values}) {
 									},
 								],
 							})(
-								<Select>
+								<Select placeholder="请选择${label}">
 								${valueStr}
 								</Select>
 							)}

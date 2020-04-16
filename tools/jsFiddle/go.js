@@ -124,7 +124,7 @@ function generatePageFormItemInput({ required, label, type, col, index }) {
 												required: ${required},
 											},
 										],
-									})(<Input placeholder="Username" type="${type}" />)}
+									})(<Input type="${type}" />)}
 								</Form.Item>
 							</Col>`;
 	return inputStr;
@@ -252,7 +252,7 @@ function generatePageFormItemTextArea({required, label, col, index }) {
 												required: ${required},
 											},
 										],
-									})(<Input.TextArea placeholder="Username"/>)}
+									})(<Input.TextArea />)}
 								</Form.Item>
 							</Col>`;
 	return areaStr;
