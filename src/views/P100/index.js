@@ -5,11 +5,11 @@ import P100Service from 'SERVICE/P100Service';
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 6 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
+    sm: { span: 12 },
   },
 };
 
@@ -118,20 +118,29 @@ class P100 extends Component {
                   ],
                 })(
                   <Select>
-                    <Select.Option value="lili"></Select.Option>
+                    <Select.Option value="lili">lili</Select.Option>
                     <Select.Option
                       value="lucy
 "
                     >
-                      {' '}
-                      <Select.Option value="lili"></Select.Option>
+                      lucy
                     </Select.Option>
                   </Select>
                 )}
               </Form.Item>
             </Col>
-            <Input.TextArea placeholder="Username" />
-            
+
+            <Col span={24}>
+              <Form.Item label="简介">
+                {getFieldDecorator('Field6', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(<Input.TextArea placeholder="Username" />)}
+              </Form.Item>
+            </Col>
           </Row>
           <Row>
             <Form.Item label=" " colon={false}>

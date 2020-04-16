@@ -19,8 +19,6 @@ glob.sync('./cfg/*.txt').forEach((filePath) => {
   pages.push({...path.parse(filePath), filePath});
 });
 
-console.log(pages);
-
 // 字段索引 Field1, Field2
 let Fld_Idx = 0;
 
@@ -41,8 +39,6 @@ function generateRoutes(pages) {
 		module: lazyLoad(() => import('VIEW/${name}/index')),
 		},\n`;
 		});
-
-		console.log('routesStr', routesStr);
 
 		routesStr = format(ROUTE_TEMPLATE, {routes: routesStr});
 		routesStr = prettier.format(routesStr, { semi: true, parser: 'babel', singleQuote: true });
