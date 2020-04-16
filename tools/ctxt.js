@@ -53,8 +53,7 @@ function generateRoutes(pages) {
 function generatePages(pages) {
 	pages.forEach((page) => {
 		const {filePath, name} = page;
-		const lineStr = fs.readFileSync(path.resolve(__dirname, filePath), 'utf8');
-		const lines = lineStr.split('\n');
+		const lines = readCfgLines(filePath);
 		generatePage(name, lines);
 	});
 }
@@ -276,11 +275,18 @@ function generatePageFormButton(lines) {
 	return btnStr;
 }
 
+function readCfgLines(filePath) {
+	const lineStr = fs.readFileSync(path.resolve(__dirname, filePath), 'utf8');
+	let lines = lineStr.split('\n');
+	// 过滤空行
+	lines = lines.filter((line) => line !== null && line.trim() !== '');
+	return lines;
+}
+
 function generateServices(pages) {
 	pages.forEach((page) => {
 		const {name, filePath} = page;
-		const lineStr = fs.readFileSync(path.resolve(__dirname, filePath), 'utf8');
-		const lines = lineStr.split('\n');
+		const lines = readCfgLines(filePath);
 		generateService(name, lines);
 	});
 }

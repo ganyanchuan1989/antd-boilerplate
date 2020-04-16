@@ -5,11 +5,11 @@ const PAGE_TEMPLATE = `import React, {{ Component }} from 'react';
 const formItemLayout = {{
 	labelCol: {{
 		xs: {{ span: 24 }},
-		sm: {{ span: 8 }},
+		sm: {{ span: 6 }},
 	}},
 	wrapperCol: {{
 		xs: {{ span: 24 }},
-		sm: {{ span: 16 }},
+		sm: {{ span: 12 }},
 	}},
 }};
 

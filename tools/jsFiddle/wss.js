@@ -10,9 +10,16 @@ wss.on('connection', (wsc) => {
 		const { cmd, code } = obj;
 		if (cmd === 'go') {
       console.log('data', data);
-      const lines = code.split('\n');
-			const pageStr = generateDemoPage('JSFiddleDemo', lines);
+			const lines = code.split('\n');
+			const pageStr = generateDemoPage('JSFiddleDemo', rmEmptyLine(lines));
 			wsc.send(pageStr);
 		}
 	});
 });
+
+function rmEmptyLine(lines) {
+	// 过滤空行
+	lines = lines.filter((line) => line !== null && line.trim() !== '');
+	console.log('lines', lines);
+	return lines;
+}

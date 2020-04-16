@@ -12,17 +12,20 @@ export default class jsFiddle extends Component {
 		this.state = {
 			height: window.innerHeight,
 			sourceCode: window.localStorage.getItem('sourceCode'),
+			ws: null,
 		};
 
 		const ws = new WebSocket('ws://127.0.0.1:12345/');
 		ws.onopen = () => {
+			console.log('ws', ws.readyState);
 			if (ws.readyState === 1) {
-				ws.send(
-					JSON.stringify({
-						cmd: 'go',
-						code: document.getElementById('txt').value,
-					})
-				);
+				// ws.send(
+				// 	JSON.stringify({
+				// 		cmd: 'go',
+				// 		code: document.getElementById('txt').value,
+				// 	})
+				// );
+				this.setState({ws});
 			} else {
 				console.log('WebSocket 建立连接异常');
 			}
@@ -32,7 +35,7 @@ export default class jsFiddle extends Component {
 			this.setState({sourceCode: data});
 			window.localStorage.setItem('sourceCode', data);
 		};
-		this.ws = ws;
+		// this.setState({ws});
 	}
 	render() {
 		const { height } = this.state;
@@ -41,7 +44,7 @@ export default class jsFiddle extends Component {
 				<Space.Fixed height={height}>
 					<Space.Fill>
 						<Space.LeftResizable size="40%" style={style}>
-							<Editor ws={this.ws}></Editor>
+							<Editor ws={this.state.ws}></Editor>
 						</Space.LeftResizable>
 						<Space.Fill style={style}>
 							<Show></Show>

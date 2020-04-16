@@ -4,11 +4,11 @@ import { Row, Col, Button, Form, Input, Checkbox, Radio, Select } from 'antd';
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 6 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
+    sm: { span: 12 },
   },
 };
 
@@ -110,6 +110,79 @@ class JSFiddleDemo extends Component {
                     <Select.Option value="lucy">lucy</Select.Option>
                   </Select>
                 )}
+              </Form.Item>
+            </Col>
+
+            <Col span={24}>
+              <Form.Item label="好友">
+                {getFieldDecorator('Field6', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(
+                  <Select>
+                    <Select.Option value="lili">lili</Select.Option>
+                    <Select.Option value="lucy">lucy</Select.Option>
+                  </Select>
+                )}
+              </Form.Item>
+            </Col>
+
+            <Col span={24}>
+              <Form.Item label="简介">
+                {getFieldDecorator('Field7', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(<Input.TextArea placeholder="Username" />)}
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item label="简介">
+                {getFieldDecorator('Field8', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(<Input.TextArea placeholder="Username" />)}
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item label="简介">
+                {getFieldDecorator('Field9', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(<Input.TextArea placeholder="Username" />)}
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item label="简介">
+                {getFieldDecorator('Field10', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(<Input.TextArea placeholder="Username" />)}
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item label="简介">
+                {getFieldDecorator('Field11', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(<Input.TextArea placeholder="Username" />)}
               </Form.Item>
             </Col>
           </Row>
