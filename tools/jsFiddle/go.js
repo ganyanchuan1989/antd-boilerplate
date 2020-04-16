@@ -124,11 +124,28 @@ function generatePageFormItemInput({ required, label, type, col, index }) {
 												required: ${required},
 											},
 										],
-									})(<Input type="${type}" />)}
+									})(<Input type="${type}" placeholder="请输入${label}"/>)}
 								</Form.Item>
 							</Col>`;
 	return inputStr;
 }
+
+function generatePageFormItemTextArea({required, label, col, index }) {
+	let areaStr = `
+							<Col span={${col}}>
+								<Form.Item label="${label}">
+									{getFieldDecorator('Field${index}', {
+										rules: [
+											{
+												required: ${required},
+											},
+										],
+									})(<Input.TextArea placeholder="请输入${label}"/>)}
+								</Form.Item>
+							</Col>`;
+	return areaStr;
+}
+
 
 function generatePageFormItemCheckbox({ label, required, col, index, values }) {
 	let valueStr = '';
@@ -203,7 +220,7 @@ function generatePageFormItemSelect({ label, required, col, index, values }) {
 									},
 								],
 							})(
-								<Select>
+								<Select placeholder="请选择${label}">
 								${valueStr}
 								</Select>
 							)}
@@ -241,19 +258,3 @@ function generatePageFormButton(lines) {
 	return btnStr;
 }
 
-
-function generatePageFormItemTextArea({required, label, col, index }) {
-	let areaStr = `
-							<Col span={${col}}>
-								<Form.Item label="${label}">
-									{getFieldDecorator('Field${index}', {
-										rules: [
-											{
-												required: ${required},
-											},
-										],
-									})(<Input.TextArea />)}
-								</Form.Item>
-							</Col>`;
-	return areaStr;
-}

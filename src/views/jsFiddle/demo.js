@@ -42,7 +42,7 @@ class JSFiddleDemo extends Component {
                       required: true,
                     },
                   ],
-                })(<Input placeholder="Username" type="input" />)}
+                })(<Input type="input" placeholder="请输入姓名" />)}
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -53,7 +53,7 @@ class JSFiddleDemo extends Component {
                       required: true,
                     },
                   ],
-                })(<Input placeholder="Username" type="password" />)}
+                })(<Input type="password" placeholder="请输入密码" />)}
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -105,7 +105,7 @@ class JSFiddleDemo extends Component {
                     },
                   ],
                 })(
-                  <Select>
+                  <Select placeholder="请选择好友">
                     <Select.Option value="lili">lili</Select.Option>
                     <Select.Option value="lucy">lucy</Select.Option>
                   </Select>
@@ -122,7 +122,7 @@ class JSFiddleDemo extends Component {
                     },
                   ],
                 })(
-                  <Select>
+                  <Select placeholder="请选择好友">
                     <Select.Option value="lili">lili</Select.Option>
                     <Select.Option value="lucy">lucy</Select.Option>
                   </Select>
@@ -138,7 +138,7 @@ class JSFiddleDemo extends Component {
                       required: true,
                     },
                   ],
-                })(<Input.TextArea placeholder="Username" />)}
+                })(<Input.TextArea placeholder="请输入简介" />)}
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -149,7 +149,7 @@ class JSFiddleDemo extends Component {
                       required: true,
                     },
                   ],
-                })(<Input.TextArea placeholder="Username" />)}
+                })(<Input.TextArea placeholder="请输入简介" />)}
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -160,7 +160,18 @@ class JSFiddleDemo extends Component {
                       required: true,
                     },
                   ],
-                })(<Input.TextArea placeholder="Username" />)}
+                })(<Input.TextArea placeholder="请输入简介" />)}
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item label="简介">
+                {getFieldDecorator('Field10', {
+                  rules: [
+                    {
+                      required: true,
+                    },
+                  ],
+                })(<Input.TextArea placeholder="请输入简介" />)}
               </Form.Item>
             </Col>
           </Row>
