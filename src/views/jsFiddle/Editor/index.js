@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './index.less';
 import classnames from 'classnames';
+import {message} from 'antd';
 
 export default class CodeDemo extends Component {
 	constructor(props) {
@@ -14,14 +15,19 @@ export default class CodeDemo extends Component {
 	convert = () => {
 		const { code } = this.state;
 		const { ws } = this.props;
-		window.localStorage.setItem('cfgCode', code);
-		// 发送页面生成指令
-		ws.send(
-			JSON.stringify({
-				cmd: 'go',
-				code,
-			})
-		);
+		if (ws && ws.readyState === 1) {
+			window.localStorage.setItem('cfgCode', code);
+			// 发送页面生成指令
+			ws.send(
+				JSON.stringify({
+					cmd: 'go',
+					code,
+				})
+			);
+			message.info('指令发送成功');
+		} else {
+			message.error('服务器已经断开');
+		}
 	};
 
 	codeChange = (e) => {

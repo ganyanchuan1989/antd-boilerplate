@@ -118,7 +118,7 @@ class JSFiddleDemo extends Component {
                 {getFieldDecorator('Field6', {
                   rules: [
                     {
-                      required: true,
+                      required: false,
                     },
                   ],
                 })(
@@ -155,28 +155,6 @@ class JSFiddleDemo extends Component {
             <Col span={24}>
               <Form.Item label="简介">
                 {getFieldDecorator('Field9', {
-                  rules: [
-                    {
-                      required: true,
-                    },
-                  ],
-                })(<Input.TextArea placeholder="Username" />)}
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="简介">
-                {getFieldDecorator('Field10', {
-                  rules: [
-                    {
-                      required: true,
-                    },
-                  ],
-                })(<Input.TextArea placeholder="Username" />)}
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="简介">
-                {getFieldDecorator('Field11', {
                   rules: [
                     {
                       required: true,

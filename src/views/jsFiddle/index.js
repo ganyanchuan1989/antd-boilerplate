@@ -19,12 +19,6 @@ export default class jsFiddle extends Component {
 		ws.onopen = () => {
 			console.log('ws', ws.readyState);
 			if (ws.readyState === 1) {
-				// ws.send(
-				// 	JSON.stringify({
-				// 		cmd: 'go',
-				// 		code: document.getElementById('txt').value,
-				// 	})
-				// );
 				this.setState({ws});
 			} else {
 				console.log('WebSocket 建立连接异常');
@@ -34,6 +28,9 @@ export default class jsFiddle extends Component {
 			console.log('sourceCode', data);
 			this.setState({sourceCode: data});
 			window.localStorage.setItem('sourceCode', data);
+		};
+		ws.onclose = () => {
+			this.setState({ws});
 		};
 		// this.setState({ws});
 	}
