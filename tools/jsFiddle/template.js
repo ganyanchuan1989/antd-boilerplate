@@ -1,17 +1,7 @@
 
 const PAGE_TEMPLATE = `import React, {{ Component }} from 'react';
 {tmpImportAntd}
-
-const formItemLayout = {{
-	labelCol: {{
-		xs: {{ span: 24 }},
-		sm: {{ span: 6 }},
-	}},
-	wrapperCol: {{
-		xs: {{ span: 24 }},
-		sm: {{ span: 12 }},
-	}},
-}};
+import styles from '../index.less';
 
 class {tmpClsname} extends Component {{
   handleSubmit = (e) => {{
@@ -32,13 +22,13 @@ class {tmpClsname} extends Component {{
 	render() {{
 		const {{ getFieldDecorator }} = this.props.form;
 		return (
-			<div>
-				<Form {{...formItemLayout}} onSubmit={{this.handleSubmit}}>
+			<div className={{styles.FormContainer}}>
+				<Form onSubmit={{this.handleSubmit}}>
 					<Row>
 						{tmpForm}
 					</Row>
 					<Row>
-						<Form.Item label=" " colon={{false}}>
+						<Form.Item label=" " colon={{false}} className={{styles.FormItem}}>
 						{tmpFormButton}
 						</Form.Item>
 					</Row>

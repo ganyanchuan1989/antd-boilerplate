@@ -136,7 +136,7 @@ function generatePageForm(form) {
 function generatePageFormItemInput(item) {
 	const { type, name, label, required, message, col } = item;
 	return `	<Col span={${col}}>
-            <Form.Item label="${label}">
+            <Form.Item label="${label}" className={styles.FormItem}>
 							{getFieldDecorator('${name}', {
 								rules: [
 									{
@@ -155,7 +155,7 @@ function generatePageFormItemTextArea(item) {
 	const { name, label, required, message, col } = item;
 	let areaStr = `
 							<Col span={${col}}>
-								<Form.Item label="${label}">
+								<Form.Item label="${label}" className={styles.FormItem}>
 									{getFieldDecorator('${name}', {
 										rules: [
 											{
@@ -174,14 +174,12 @@ function generatePageFormItemCheckbox(formitem) {
 	let valueStr = '';
 	values.forEach((valueItem) => {
 		const { label, value } = valueItem;
-		valueStr += `	<Col span={6}>
-										<Checkbox value="${value}">${label}</Checkbox>
-									</Col>
+		valueStr += `	<Checkbox value="${value}">${label}</Checkbox>
 									`;
 	});
 
 	return `				<Col span={${col}}>
-						<Form.Item label="${label}">
+						<Form.Item label="${label}" className={styles.FormItem}>
 							{getFieldDecorator('${name}', {
 								rules: [
 									{
@@ -191,9 +189,9 @@ function generatePageFormItemCheckbox(formitem) {
 								],
 							})(
 							<Checkbox.Group style={{ width: '100%' }}>
-								<Row>
+								<div style={{display: 'flex'}}>
 								${valueStr}
-								</Row>
+								</div>
 							</Checkbox.Group>
 							)}
 						</Form.Item>
@@ -211,7 +209,7 @@ function generatePageFormItemRadio(formItem) {
 	});
 
 	return `				<Col span={${col}}>
-						<Form.Item label="${label}">
+						<Form.Item label="${label}" className={styles.FormItem}>
 							{getFieldDecorator('${name}', {
 								rules: [
 									{
@@ -239,7 +237,7 @@ function generatePageFormItemSelect(formItem) {
 	});
 
 	return `				<Col span={${col}}>
-						<Form.Item label="${label}">
+						<Form.Item label="${label}" className={styles.FormItem}>
 							{getFieldDecorator('${name}', {
 								rules: [
 									{

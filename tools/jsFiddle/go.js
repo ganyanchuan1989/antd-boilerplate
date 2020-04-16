@@ -117,7 +117,7 @@ function generateFields(line) {
 function generatePageFormItemInput({ required, label, type, col, index }) {
 	let inputStr = `
 							<Col span={${col}}>
-								<Form.Item label="${label}">
+								<Form.Item label="${label}" className={styles.FormItem}>
 									{getFieldDecorator('Field${index}', {
 										rules: [
 											{
@@ -133,7 +133,7 @@ function generatePageFormItemInput({ required, label, type, col, index }) {
 function generatePageFormItemTextArea({required, label, col, index }) {
 	let areaStr = `
 							<Col span={${col}}>
-								<Form.Item label="${label}">
+								<Form.Item label="${label}" className={styles.FormItem}>
 									{getFieldDecorator('Field${index}', {
 										rules: [
 											{
@@ -150,16 +150,14 @@ function generatePageFormItemTextArea({required, label, col, index }) {
 function generatePageFormItemCheckbox({ label, required, col, index, values }) {
 	let valueStr = '';
 	values.forEach((value) => {
-		valueStr += `	<Col span={6}>
-										<Checkbox value="${value}">${value}</Checkbox>
-									</Col>
-									`;
+		valueStr += `<Checkbox value="${value}">${value}</Checkbox>
+		`;
 	});
 	// valueStr = rmLastLine(valueStr);
 
 	return `				
 					<Col span={${col}}>
-						<Form.Item label="${label}">
+						<Form.Item label="${label}" className={styles.FormItem}>
 							{getFieldDecorator('Field${index}', {
 								rules: [
 									{
@@ -168,9 +166,9 @@ function generatePageFormItemCheckbox({ label, required, col, index, values }) {
 								],
 							})(
 							<Checkbox.Group style={{ width: '100%' }}>
-								<Row>
-								${valueStr}
-								</Row>
+								<div style={{display: 'flex'}}>
+									${valueStr}
+								</div>
 							</Checkbox.Group>
 							)}
 						</Form.Item>
@@ -187,7 +185,7 @@ function generatePageFormItemRadio({ label, required, col, values, index }) {
 
 	return `				
 					<Col span={${col}}>
-						<Form.Item label="${label}">
+						<Form.Item label="${label}" className={styles.FormItem}>
 							{getFieldDecorator('Field${index}', {
 								rules: [
 									{
@@ -212,7 +210,7 @@ function generatePageFormItemSelect({ label, required, col, index, values }) {
 	});
 	return `				
 					<Col span={${col}}>
-						<Form.Item label="${label}">
+						<Form.Item label="${label}" className={styles.FormItem}>
 							{getFieldDecorator('Field${index}', {
 								rules: [
 									{
